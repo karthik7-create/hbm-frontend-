@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../features/auth/authSlice';
 import { useState } from 'react';
-import { Hotel, User, LogOut, Menu, X, ChevronDown } from 'lucide-react';
+import { Hotel, User, LogOut, Menu, X, ChevronDown, Luggage } from 'lucide-react';
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
@@ -35,6 +35,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-1">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/search">Hotels</NavLink>
+            {isAuthenticated && <NavLink to="/bookings">My Bookings</NavLink>}
 
             {isAuthenticated ? (
               <div className="relative ml-2">
@@ -64,6 +65,13 @@ const Navbar = () => {
                       className="flex items-center gap-2 px-4 py-2.5 text-sm text-surface-200 hover:bg-white/5 no-underline transition-colors"
                     >
                       <User className="w-4 h-4" /> My Profile
+                    </Link>
+                    <Link
+                      to="/bookings"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-surface-200 hover:bg-white/5 no-underline transition-colors"
+                    >
+                      <Luggage className="w-4 h-4" /> My Bookings
                     </Link>
                     {user?.role === 'ADMIN' && (
                       <Link
@@ -118,6 +126,7 @@ const Navbar = () => {
             {isAuthenticated ? (
               <>
                 <MobileLink to="/profile" onClick={() => setMobileOpen(false)}>Profile</MobileLink>
+                <MobileLink to="/bookings" onClick={() => setMobileOpen(false)}>My Bookings</MobileLink>
                 <button onClick={() => { handleLogout(); setMobileOpen(false); }}
                   className="block w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 rounded-lg bg-transparent border-none cursor-pointer"
                 >
