@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { registerUser, loginUser, getProfile, updateProfile } from '../../api/authApi';
+import { registerUser, loginUser, googleLoginApi, getProfile, updateProfile } from '../../api/authApi';
 
 // ── Async Thunks ─────────────────────────────────────────
 
@@ -31,6 +31,22 @@ export const login = createAsyncThunk(
       return response.data;
     } catch (error) {
       const message = error.response?.data?.message || 'Login failed';
+      return rejectWithValue(message);
+    }
+  }
+);
+
+export const googleLogin = createAsyncThunk(
+  'auth/googleLogin',
+  async (credential, { rejectWithValue }) => {
+    try {
+      const response = await googleLoginApi(credential);
+      localStorage.setItem('hotel_token', response.data.accessToken);
+      localStorage.setItem('hotel_refresh_token', response.data.refreshToken);
+      localStorage.setItem('hotel_user', JSON.stringify(response.data.user));
+      return response.data;
+    } catch (error) {
+      const message = error.response?.data?.message || 'Google login failed';
       return rejectWithValue(message);
     }
   }
@@ -123,6 +139,23 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
       })
       .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    // Google Login
+    builder
+      .addCase(googleLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(googleLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.accessToken;
+        state.isAuthenticated = true;
+      })
+      .addCase(googleLogin.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

@@ -18,6 +18,12 @@ export const refreshToken = async (refreshToken) => {
   return response.data;
 };
 
+// Google OAuth login
+export const googleLoginApi = async (credential) => {
+  const response = await axiosInstance.post('/auth/google', { credential });
+  return response.data;
+};
+
 // Get current user profile
 export const getProfile = async () => {
   const response = await axiosInstance.get('/users/me');
