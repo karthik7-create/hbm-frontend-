@@ -1,14 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import adminReducer from '../features/admin/adminSlice';
+import authReducer from '../features/auth/authSlice';
 import hotelReducer from '../features/hotel/hotelSlice';
+import bookingReducer from '../features/booking/bookingSlice';
 
 const store = configureStore({
   reducer: {
-    admin: adminReducer,
+    auth: authReducer,
     hotel: hotelReducer,
-    // Other module slices will be added during merge:
-    // auth: authReducer,
-    // booking: bookingReducer,
+    booking: bookingReducer,
+    admin: adminReducer,
   },
 });
 
