@@ -49,55 +49,97 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4">
+    <div style={{ minHeight: '100vh', padding: '3rem 1rem' }}>
       {/* Background Glow */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-500/8 rounded-full blur-3xl" />
+      <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        <div style={{
+          position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)',
+          width: 600, height: 600, background: 'rgba(59,130,246,0.08)', borderRadius: '50%', filter: 'blur(64px)',
+        }} />
       </div>
 
-      <div className="max-w-2xl mx-auto relative z-10">
+      <div style={{ maxWidth: 560, margin: '0 auto', position: 'relative', zIndex: 10 }}>
         {/* Header */}
-        <div className="text-center mb-8 animate-fade-in-up">
-          <h1 className="text-3xl font-bold text-white mb-2">My Profile</h1>
-          <p className="text-surface-200/60">Manage your StayEase account information</p>
+        <div className="animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 style={{ fontSize: '1.875rem', fontWeight: 700, color: '#fff', marginBottom: '0.5rem' }}>My Profile</h1>
+          <p style={{ color: 'rgba(226,232,240,0.6)', fontSize: '0.95rem' }}>Manage your StayEase account information</p>
         </div>
 
         {/* Profile Card */}
-        <div className="glass rounded-2xl overflow-hidden shadow-2xl animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <div
+          className="glass animate-fade-in-up"
+          style={{
+            borderRadius: 20,
+            overflow: 'hidden',
+            boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
+            border: '1px solid rgba(255,255,255,0.06)',
+            animationDelay: '0.1s',
+          }}
+        >
           {/* Banner */}
-          <div className="h-32 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 relative">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoLTZWMzRoNnptMC0zMHY2aC02VjRoNnptMCAxMHY2aC02VjE0aDZ6bTAgMTB2NmgtNlYyNGg2em0tMTAtNHY2aC02VjIwaDZ6bTAgMTB2NmgtNlYzMGg2em0wLTIwdjZoLTZWMTBoNnptMTAgMHY2aC02VjEwaDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30" />
+          <div style={{
+            height: 140,
+            background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 40%, #d946ef 100%)',
+            position: 'relative',
+          }}>
+            <div style={{
+              position: 'absolute', inset: 0,
+              backgroundImage: "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoLTZWMzRoNnptMC0zMHY2aC02VjRoNnptMCAxMHY2aC02VjE0aDZ6bTAgMTB2NmgtNlYyNGg2em0tMTAtNHY2aC02VjIwaDZ6bTAgMTB2NmgtNlYzMGg2em0wLTIwdjZoLTZWMTBoNnptMTAgMHY2aC02VjEwaDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')",
+              opacity: 0.3,
+            }} />
+            {/* Bottom gradient fade to blend into card body */}
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: 40,
+              background: 'linear-gradient(to top, rgba(15,23,42,0.85), transparent)',
+            }} />
           </div>
 
-          {/* Avatar */}
-          <div className="flex justify-center -mt-14">
-            <div className="w-28 h-28 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center border-4 border-surface-900 shadow-xl">
-              <span className="text-4xl font-bold text-white">
+          {/* Avatar — centered, overlapping banner bottom */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: -56 }}>
+            <div style={{
+              width: 96, height: 96,
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #3b82f6, #d946ef)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              border: '4px solid rgba(15,23,42,0.95)',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.4), 0 0 0 2px rgba(255,255,255,0.06)',
+            }}>
+              <span style={{ fontSize: '2rem', fontWeight: 700, color: '#fff', lineHeight: 1 }}>
                 {user?.name?.charAt(0)?.toUpperCase() || 'U'}
               </span>
             </div>
           </div>
 
           {/* Content */}
-          <div className="p-8 pt-4">
+          <div style={{ padding: '1rem 2rem 2rem' }}>
             {/* Name & Role */}
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-white mb-1">{user?.name || 'User'}</h2>
-              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
-                user?.role === 'ADMIN'
-                  ? 'bg-amber-500/15 text-amber-400 border border-amber-500/20'
-                  : 'bg-primary-500/15 text-primary-400 border border-primary-500/20'
-              }`}>
-                <Shield className="w-3.5 h-3.5" />
+            <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#fff', margin: '0.5rem 0 0.5rem' }}>
+                {user?.name || 'User'}
+              </h2>
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '4px 14px', borderRadius: 9999,
+                fontSize: '0.75rem', fontWeight: 600,
+                background: user?.role === 'ADMIN' ? 'rgba(245,158,11,0.12)' : 'rgba(59,130,246,0.12)',
+                color: user?.role === 'ADMIN' ? '#fbbf24' : '#60a5fa',
+                border: `1px solid ${user?.role === 'ADMIN' ? 'rgba(245,158,11,0.2)' : 'rgba(59,130,246,0.2)'}`,
+              }}>
+                <Shield style={{ width: 14, height: 14 }} />
                 {user?.role || 'USER'}
               </span>
             </div>
 
+            {/* Separator */}
+            <div style={{
+              height: 1, margin: '0 0 1.25rem',
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
+            }} />
+
             {/* Info Fields */}
-            <div className="space-y-4">
-              {/* Name (editable) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <InfoField
-                icon={<User className="w-4 h-4" />}
+                icon={<User style={{ width: 18, height: 18 }} />}
                 label="Full Name"
                 value={editing ? (
                   <input
@@ -105,23 +147,28 @@ const ProfilePage = () => {
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20 transition-all"
+                    style={{
+                      width: '100%', background: 'rgba(255,255,255,0.05)',
+                      border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10,
+                      padding: '8px 12px', color: '#fff', fontSize: '0.875rem',
+                      outline: 'none', transition: 'border-color 0.2s',
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = 'rgba(59,130,246,0.5)'}
+                    onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
                   />
                 ) : (
-                  <span className="text-white text-sm">{user?.name || '—'}</span>
+                  <span style={{ color: '#fff', fontSize: '0.875rem' }}>{user?.name || '—'}</span>
                 )}
               />
 
-              {/* Email (read-only) */}
               <InfoField
-                icon={<Mail className="w-4 h-4" />}
+                icon={<Mail style={{ width: 18, height: 18 }} />}
                 label="Email"
-                value={<span className="text-white text-sm">{user?.email || '—'}</span>}
+                value={<span style={{ color: '#fff', fontSize: '0.875rem' }}>{user?.email || '—'}</span>}
               />
 
-              {/* Phone (editable) */}
               <InfoField
-                icon={<Phone className="w-4 h-4" />}
+                icon={<Phone style={{ width: 18, height: 18 }} />}
                 label="Phone"
                 value={editing ? (
                   <input
@@ -130,54 +177,95 @@ const ProfilePage = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="Enter phone number"
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm placeholder-surface-200/30 focus:outline-none focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20 transition-all"
+                    style={{
+                      width: '100%', background: 'rgba(255,255,255,0.05)',
+                      border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10,
+                      padding: '8px 12px', color: '#fff', fontSize: '0.875rem',
+                      outline: 'none', transition: 'border-color 0.2s',
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = 'rgba(59,130,246,0.5)'}
+                    onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
                   />
                 ) : (
-                  <span className="text-white text-sm">{user?.phone || 'Not provided'}</span>
+                  <span style={{ color: '#fff', fontSize: '0.875rem' }}>{user?.phone || 'Not provided'}</span>
                 )}
               />
 
-              {/* Joined Date (read-only) */}
               <InfoField
-                icon={<Calendar className="w-4 h-4" />}
+                icon={<Calendar style={{ width: 18, height: 18 }} />}
                 label="Member Since"
-                value={<span className="text-white text-sm">{formatDate(user?.createdAt)}</span>}
+                value={<span style={{ color: '#fff', fontSize: '0.875rem' }}>{formatDate(user?.createdAt)}</span>}
               />
             </div>
 
             {/* Actions */}
-            <div className="flex gap-3 mt-8">
+            <div style={{ display: 'flex', gap: 12, marginTop: '1.75rem' }}>
               {editing ? (
                 <>
                   <button
                     id="profile-save"
                     onClick={handleSave}
                     disabled={loading}
-                    className="flex-1 py-2.5 px-4 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-primary-500/25 flex items-center justify-center gap-2 border-none cursor-pointer text-sm disabled:opacity-50"
+                    style={{
+                      flex: 1, padding: '12px 16px',
+                      background: 'linear-gradient(135deg, #2563eb, #3b82f6)',
+                      color: '#fff', fontWeight: 600, borderRadius: 12,
+                      border: 'none', cursor: 'pointer', fontSize: '0.875rem',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                      boxShadow: '0 4px 14px rgba(59,130,246,0.3)',
+                      transition: 'all 0.2s', opacity: loading ? 0.5 : 1,
+                    }}
+                    onMouseEnter={(e) => { e.target.style.transform = 'translateY(-1px)'; e.target.style.boxShadow = '0 6px 20px rgba(59,130,246,0.4)'; }}
+                    onMouseLeave={(e) => { e.target.style.transform = 'translateY(0)'; e.target.style.boxShadow = '0 4px 14px rgba(59,130,246,0.3)'; }}
                   >
                     {loading ? (
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <div style={{
+                        width: 16, height: 16,
+                        border: '2px solid rgba(255,255,255,0.3)',
+                        borderTopColor: '#fff', borderRadius: '50%',
+                        animation: 'spin 0.6s linear infinite',
+                      }} />
                     ) : (
                       <>
-                        <Save className="w-4 h-4" /> Save Changes
+                        <Save style={{ width: 16, height: 16 }} /> Save Changes
                       </>
                     )}
                   </button>
                   <button
                     id="profile-cancel"
                     onClick={handleCancel}
-                    className="px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-surface-200 font-medium transition-all flex items-center gap-2 cursor-pointer text-sm"
+                    style={{
+                      padding: '12px 20px',
+                      background: 'rgba(255,255,255,0.05)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: 12, color: '#e2e8f0',
+                      fontWeight: 500, cursor: 'pointer', fontSize: '0.875rem',
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      transition: 'all 0.2s',
+                    }}
+                    onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.1)'}
+                    onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.05)'}
                   >
-                    <X className="w-4 h-4" /> Cancel
+                    <X style={{ width: 16, height: 16 }} /> Cancel
                   </button>
                 </>
               ) : (
                 <button
                   id="profile-edit"
                   onClick={() => setEditing(true)}
-                  className="flex-1 py-2.5 px-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-surface-200 hover:text-white font-medium transition-all flex items-center justify-center gap-2 cursor-pointer text-sm"
+                  style={{
+                    flex: 1, padding: '12px 16px',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: 12, color: '#e2e8f0',
+                    fontWeight: 500, cursor: 'pointer', fontSize: '0.875rem',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => { e.target.style.background = 'rgba(255,255,255,0.1)'; e.target.style.color = '#fff'; }}
+                  onMouseLeave={(e) => { e.target.style.background = 'rgba(255,255,255,0.05)'; e.target.style.color = '#e2e8f0'; }}
                 >
-                  <Edit3 className="w-4 h-4" /> Edit Profile
+                  <Edit3 style={{ width: 16, height: 16 }} /> Edit Profile
                 </button>
               )}
             </div>
@@ -190,10 +278,18 @@ const ProfilePage = () => {
 
 // Reusable info field component
 const InfoField = ({ icon, label, value }) => (
-  <div className="flex items-start gap-3 p-3 rounded-xl bg-white/3 hover:bg-white/5 transition-colors">
-    <div className="mt-0.5 text-surface-200/40">{icon}</div>
-    <div className="flex-1 min-w-0">
-      <p className="text-xs text-surface-200/50 mb-1">{label}</p>
+  <div style={{
+    display: 'flex', alignItems: 'flex-start', gap: 14,
+    padding: '14px 16px', borderRadius: 14,
+    background: 'rgba(255,255,255,0.025)',
+    transition: 'background 0.2s',
+  }}
+    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+    onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.025)'}
+  >
+    <div style={{ marginTop: 2, color: 'rgba(226,232,240,0.4)', flexShrink: 0 }}>{icon}</div>
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <p style={{ fontSize: '0.7rem', color: 'rgba(226,232,240,0.45)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 500 }}>{label}</p>
       {value}
     </div>
   </div>
